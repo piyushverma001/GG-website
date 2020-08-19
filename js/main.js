@@ -20,16 +20,11 @@ function init(){
     const loader = new THREE.GLTFLoader();
     clock = new THREE.Clock();
     scene.background = new THREE.Color( 0xf0f0f0 );
-    // Optional: Provide a DRACOLoader instance to decode compressed mesh data
-    // const dracoLoader = new DRACOLoader();
-    // dracoLoader.setDecoderPath( '/examples/js/libs/draco/' );
-    // loader.setDRACOLoader( dracoLoader );
+
     
-    // Load a glTF resource
     loader.load(
-        // resource URL
         'models/animationnn.glb',
-        // called when the resource is loaded
+
         function ( gltf ) {
             mesh = gltf.scene.children[2] ;
             mesh.position.z=2;
@@ -41,8 +36,7 @@ function init(){
             // gltf.cameras; // Array<THREE.Camera>
             // gltf.asset; // Object
             
-            // const material = new THREE.MeshLambertMaterial( { color: 0xffff00 } );
-            // mesh.material = material;
+            
             scene.add( mesh );
             mixer = new THREE.AnimationMixer(mesh);
             
@@ -94,7 +88,6 @@ function animate() {
     const deltaTime = clock.getDelta();
     if(mixer){
         mixer.update(deltaTime);
-        // mesh.rotation.z += 0.01;
         mesh.rotation.z+= 0.01;
     }
 
